@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :price %><br>
-    <%= f.number_field :price %>
+    <%= f.text_field :price %>
   </div>
   <div class="field">
     <%= f.label :rules %><br>
@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :minimum_days %><br>
-    <%= f.number_field :minimum_days %>
+    <%= f.text_field :minimum_days %>
   </div>
   <div class="field">
     <%= f.label :address %><br>
@@ -44,16 +44,14 @@
     <%= f.text_field :lng %>
   </div>
   <div class="field">
-    <%= f.label :is_authorized %><br>
-    <%= f.check_box :is_authorized %>
+  <%= f.label :amenities %><br>
+  <%= f.collection_check_boxes :amenity_ids,Amenity.all, :id, :name %>
   </div>
   <div class="field">
-    <%= f.label :city_id %><br>
-    <%= f.number_field :city_id %>
+    <%= f.hidden_field :city_id %>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+  <div class="field"><br>
+    <%= f.hidden_field :user_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -15,6 +15,7 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
+   
   end
 
   # GET /rooms/1/edit

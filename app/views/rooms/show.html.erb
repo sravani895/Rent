@@ -45,15 +45,5 @@
   <%= @room.is_authorized %>
 </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @room.city_id %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @room.user_id %>
-</p>
-
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>

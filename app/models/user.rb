@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          belongs_to :role
+         has_many :rooms
         after_create :default_role
          
   def role?(role)

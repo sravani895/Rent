@@ -45,7 +45,11 @@
   </div>
   <div class="field">
   <%= f.label :amenities %><br>
-  <%= f.collection_check_boxes :amenity_ids,Amenity.all, :id, :name %>
+  <%= f.collection_check_boxes :amenity_ids, Amenity.all, :id, :name %>
+  </div>
+  <div class="field">
+  <%= f.label :cities %><br>
+  <%= f.collection_check_boxes :city_id, City.all, :id, :name %>
   </div>
   <div class="field">
     <%= f.hidden_field :city_id %>

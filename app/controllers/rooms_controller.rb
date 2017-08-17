@@ -1,4 +1,7 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!, except: [:index,:show]
+
+ 
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   # GET /rooms
@@ -28,8 +31,10 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @room.user_id = current_user.id
 
+
     respond_to do |format|
       if @room.save
+        # Notification.isauthorize_confirmation.deliver
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else

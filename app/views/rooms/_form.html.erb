@@ -49,10 +49,10 @@
   </div>
   <div class="field">
   <%= f.label :cities %><br>
-  <%= f.collection_check_boxes :city_id, City.all, :id, :name %>
+  <%= f.collection_select :city_id, City.all, :id, :name, prompt: "select city" %>
   </div>
   <div class="field">
-    <%= f.hidden_field :city_id %>
+    <%#= f.hidden_field :city_id %>
   </div>
   <div class="field"><br>
     <%= f.hidden_field :user_id %>

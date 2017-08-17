@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
+    # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   validates_presence_of :email,:password, :first_name,:last_name, :user_name, :mobile_number
   validates_uniqueness_of :email,:first_name,:last_name,:user_name,:mobile_number
@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
          belongs_to :role
          has_many :rooms
         after_create :default_role
-         
+
+                      
   def role?(role)
 	 self.role.name == role
   end

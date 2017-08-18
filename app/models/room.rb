@@ -11,10 +11,10 @@ end
 def changing_role
 	if self.user.role_id == Role.find_by_name("guest").id
 		self.user.role_id = Role.find_by_name("host").id
+		#self.user.role_id = role
 		#binding.pry
 		self.user.save
 		#binding.pry
-		
 	end
 end
 	

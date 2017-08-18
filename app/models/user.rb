@@ -2,10 +2,10 @@ class User < ActiveRecord::Base
     # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable  
   
-  validates_presence_of :email,:password, :first_name,:last_name, :user_name, :mobile_number
-  validates_uniqueness_of :email,:first_name,:last_name,:user_name,:mobile_number
-   validates_length_of :mobile_number, is: 10
-   validates_format_of :user_name, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+  #validates_presence_of :email,:password, :first_name,:last_name, :user_name, :mobile_number
+  #validates_uniqueness_of :email,:first_name,:last_name,:user_name,:mobile_number
+   #validates_length_of :mobile_number, is: 10
+   #validates_format_of :user_name, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
 
   devise :database_authenticatable, :registerable,

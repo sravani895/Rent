@@ -43,6 +43,12 @@
     <%= f.label :lng %><br>
     <%= f.text_field :lng %>
   </div>
+  <% if can? :update, @room %>
+  <div class="field">
+  <%= f.label :is_authorized %><br>
+  <%= f.check_box :is_authorized %>
+  </div>
+  <% end %>
   <div class="field">
   <%= f.label :amenities %><br>
   <%= f.collection_check_boxes :amenity_ids, Amenity.all, :id, :name %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :rooms
+  get 'rooms/unauthorized'
+  resources :rooms 
   devise_for :users
     scope "/admin" do
      resources :users

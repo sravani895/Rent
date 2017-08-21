@@ -25,6 +25,7 @@ class RoomsController < ApplicationController
   def edit
   end
 
+  
   # POST /rooms
   # POST /rooms.json
   def create
@@ -66,6 +67,9 @@ class RoomsController < ApplicationController
       format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+def unauthorized
+    @rooms = Room.all
   end
 
   private

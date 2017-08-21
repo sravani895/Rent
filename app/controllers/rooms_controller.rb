@@ -71,6 +71,9 @@ class RoomsController < ApplicationController
 def unauthorized
     @rooms = Room.all
   end
+  def myrooms
+     @rooms = Room.all
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.7.1'
 gem 'devise'
 gem 'pry'
+gem 'httparty'
 gem 'cancancan'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

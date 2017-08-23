@@ -1,8 +1,11 @@
 class Room < ActiveRecord::Base
+	#mount_uploader :image, ImageUploader
 	has_many :amenity_rooms
 	has_many :amenities, through: :amenity_rooms
 	belongs_to :user
 	belongs_to :city
+	has_many :images
+	accepts_nested_attributes_for :images
 validates_presence_of :name, :description, :price, :rules, :minimum_days, :address, :lat, :lng
 after_create :send_an_email
 after_create :changing_role

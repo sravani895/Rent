@@ -35,10 +35,6 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-<div class="field">
-    <%= f.label :roles %><br>
-    <%= f.collection_select :role_id, Role.all, :id, :name, prompt: "select role" %>
-  </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

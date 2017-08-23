@@ -48,8 +48,12 @@
   <div class="field">
   <%= f.label :is_authorized %><br>
   <%= f.check_box :is_authorized %>
-  </div>
+  </div>  
   <% end %>
+ <%= f.fields_for :images, @image do |img| %>
+        <%= img.file_field :image %>
+    <% end %>
+
   <div class="field">
   <%= f.label :amenities %><br>
   <%= f.collection_check_boxes :amenity_ids, Amenity.all, :id, :name %>

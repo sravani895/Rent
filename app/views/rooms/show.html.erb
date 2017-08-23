@@ -45,14 +45,19 @@
   <li><%=  amenity.name %> </li>
 <% end %>
 </ol>
-
+<P>
+<strong>image:</strong>
+<% @room.images.each do |img| %>
+    <%=image_tag img.image %>
+  <% end %>
+</P>
 <p>
   <strong>Is authorized:</strong>
   <%= @room.is_authorized %>
 </p>
 <iframe
-  width="600"
-  height="450"
+  width="400"
+  height="250"
   frameborder="0" style="border:0"
   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAQ6hKKYYyVNOh4RVkhoVmlc6WKnVtPH0M
     &q=<%= @room.address %>, <%= @room.lat %>, <%= @room.lng %>" allowfullscreen>

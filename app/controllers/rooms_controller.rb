@@ -8,6 +8,7 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     @rooms = Room.all
+    @images = Image.all
   end
 
   # GET /rooms/1
@@ -17,7 +18,8 @@ class RoomsController < ApplicationController
 
   # GET /rooms/new
   def new
-    @room = Room.new
+    @room = Room.new    
+    @image = Image.new
    
   end
 
@@ -31,9 +33,7 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     @room.user_id = current_user.id
-
-
-    respond_to do |format|
+     respond_to do |format|
       if @room.save
         # Notification.isauthorize_confirmation.deliver
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
@@ -83,6 +83,6 @@ def unauthorized
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:name, :description, :price, :rules, :minimum_days, :address, :lat, :lng, :is_authorized, :city_id, :user_id, amenity_ids: [])
+      params.require(:room).permit(:name, :description, :price, :rules, :minimum_days, :address, :lat, :lng, :is_authorized, :city_id, :user_id,images_attributes:[:id,:image,:room_id],amenity_ids: [])
     end
 end

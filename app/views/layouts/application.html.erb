@@ -16,7 +16,7 @@ Welcome <%= current_user.first_name %>
 <% else %>
 <%= link_to "sign in", new_user_session_path %> | <%= link_to "sign up", new_user_registration_path %> |
 <% end %>
-<%= link_to "cities", cities_path %> | <%= link_to "amenities", amenities_path %> | <%= link_to "rooms", rooms_path %>
+<%= link_to "cities", cities_path %> | <%= link_to "amenities", amenities_path %> | <%= link_to "rooms", rooms_path %> | <%= link_to "images", images_path %>
 <%= yield %>
 
 </body>

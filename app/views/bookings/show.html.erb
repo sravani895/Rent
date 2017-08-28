@@ -1,5 +1,15 @@
 <p id="notice"><%= notice %></p>
 
+
+<p>
+  <strong>User:</strong>
+  <%= @booking.user.user_name %>
+</p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @booking.room.name %>
+</p>
 <p>
   <strong>Start date:</strong>
   <%= @booking.start_date %>
@@ -11,19 +21,9 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @booking.user_id %>
-</p>
-
-<p>
-  <strong>Room:</strong>
-  <%= @booking.room_id %>
-</p>
-
-<p>
   <strong>Is confirmed:</strong>
   <%= @booking.is_confirmed %>
 </p>
 
-<%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to 'Edit', edit_booking_path(@booking) %> 
 <%= link_to 'Back', bookings_path %>

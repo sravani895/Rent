@@ -19,12 +19,14 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1/edit
   def edit
+ 
   end
 
   # POST /bookings
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
+    @booking.user_id = current_user.id
 
     respond_to do |format|
       if @booking.save

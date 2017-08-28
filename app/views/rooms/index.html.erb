@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 <h2><%= link_to "my rooms", rooms_myrooms_path %></h2>
-<% if @user.role_id == Role.find_by_name("admin").id %>
-<h2><%= link_to 'unauthorized rooms', rooms_unauthorized_path %></h2>
+<% if @user.present? %>
+  <% if @user.role_id == Role.find_by_name("admin").id  %>
+    <h2><%= link_to 'unauthorized rooms', rooms_unauthorized_path %></h2>
+  <% end %>
 <% end %>
 <h2>Listing authorized Rooms</h2>  
 

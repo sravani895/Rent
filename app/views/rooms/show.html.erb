@@ -39,6 +39,11 @@
   <strong>Lng:</strong>
   <%= @room.lng %>
 </p>
+<p>
+  <strong>User:</strong>
+  <%= @room.user.user_name %>
+</p>
+
 <h2>Selected amenities</h2>
 <ol>
 <% @room.amenities.each do |amenity| %>
@@ -64,7 +69,39 @@
 </iframe><br>
 <% if user_signed_in? %>
 <h3> Booking </h3>
-  <%= render '/bookings/form' %>
+  <%= form_for(@booking) do |f| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+      <% @booking.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.date_select :end_date %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :room_id, value: @room.id %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
   <% end %>
 <% if can? :update, @room %>
 <%= link_to 'Edit', edit_room_path(@room) %>

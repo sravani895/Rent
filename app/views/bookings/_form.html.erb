@@ -23,7 +23,7 @@
     <%= f.hidden_field :user_id %>
   </div>
   <div class="field">
-    <%= f.hidden_field :room_id %>
+    <%= f.hidden_field :room_id, value: @booking.room.id %>
   </div>
   
   <div class="actions">

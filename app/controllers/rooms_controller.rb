@@ -1,19 +1,20 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user!, except: [:index,:show]
-
- 
+  before_action :authenticate_user!, except: [:index,:show] 
+  #load_and_authorize_resource
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   # GET /rooms
   # GET /rooms.json
   def index
     @rooms = Room.all
+    @user = current_user
     @images = Image.all
   end
 
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    @booking = Booking.new
   end
 
   # GET /rooms/new

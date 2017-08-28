@@ -4,14 +4,15 @@ class User < ActiveRecord::Base
   
    validates_presence_of :first_name,:last_name, :user_name, :mobile_number
   validates_uniqueness_of :first_name,:last_name,:user_name,:mobile_number
-   #validates_length_of :mobile_number, is: 10
-   #validates_format_of :user_name, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+   validates_length_of :mobile_number, is: 10
+   validates_format_of :user_name, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          belongs_to :role
          has_many :rooms
+         has_many :bookings
         
   after_create :default_role
         

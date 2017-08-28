@@ -62,7 +62,10 @@
   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAQ6hKKYYyVNOh4RVkhoVmlc6WKnVtPH0M
     &q=<%= @room.address %>, <%= @room.lat %>, <%= @room.lng %>" allowfullscreen>
 </iframe><br>
-
+<% if user_signed_in? %>
+<h3> Booking </h3>
+  <%= render '/bookings/form' %>
+  <% end %>
 <% if can? :update, @room %>
 <%= link_to 'Edit', edit_room_path(@room) %>
 <% end %> |

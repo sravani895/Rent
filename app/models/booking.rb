@@ -2,6 +2,7 @@ class Booking < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :room
 	validate :booking_room
+	after_create :send_mail_for_host
 	private
 	def booking_room
 		bookings = Booking.where('room_id=?',self.room_id)
@@ -10,10 +11,13 @@ class Booking < ActiveRecord::Base
 			#binding.pry
 			previous_dates = (book.start_date.to_datetime..book.end_date.to_datetime).to_a
 			#binding.pry
-				if (self.start_date < Date.today) || (self.end_date < Date.today) || (previous_dates - new_dates).length != previous_dates.length	
+				if (self.start_date <= Date.today) || (self.end_date <= Date.today) || (previous_dates - new_dates).length != previous_dates.length	
 				#binding.pry		
 				self.errors.add(:base, "room is not available for booking")
 			end
 		end
+	end
+	def send_mail_for_host
+		NotificationForBooking.is_confirmed_confirmation(self).deliver_now!
 	end
 	end

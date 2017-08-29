@@ -20,7 +20,7 @@
         <td><%= booking.start_date %></td>
         <td><%= booking.end_date %></td>
         <td><%= booking.user.user_name %></td>
-        <td><%= booking.room_id %></td>
+        <td><%= booking.room.name %></td>
         <td><%= booking.is_confirmed %></td>
         <td><%= link_to 'Show', booking %></td>
         <td><%= link_to 'Edit', edit_booking_path(booking) %></td>

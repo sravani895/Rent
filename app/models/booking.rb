@@ -7,8 +7,11 @@ class Booking < ActiveRecord::Base
 		bookings = Booking.where('room_id=?',self.room_id)
 		new_dates = (self.start_date.to_datetime..self.end_date.to_datetime).to_a
 		bookings.each do |book|
+			#binding.pry
 			previous_dates = (book.start_date.to_datetime..book.end_date.to_datetime).to_a
-				if (self.end_date < Date.today) && (previous_dates - new_dates).length != previous_dates.length			
+			#binding.pry
+				if (self.start_date < Date.today) || (self.end_date < Date.today) || (previous_dates - new_dates).length != previous_dates.length	
+				#binding.pry		
 				self.errors.add(:base, "room is not available for booking")
 			end
 		end

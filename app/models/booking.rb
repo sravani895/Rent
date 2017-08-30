@@ -3,6 +3,7 @@ class Booking < ActiveRecord::Base
 	belongs_to :room
 	validate :booking_room, on: :create
 	after_create :send_mail_for_host
+	after_create :calculation
 	after_update :send_mail_for_user
 	private
 	def booking_room
@@ -17,6 +18,19 @@ class Booking < ActiveRecord::Base
 				self.errors.add(:base, "room is not available for booking")
 			end
 		end
+	end
+	def calculation
+		bookings = Booking.where('room_id=?',self.room_id)
+		bookings.each do |book|
+			#binding.pry
+			days = (book.start_date.to_datetime..book.end_date.to_datetime).to_a.length
+			#binding.pry
+			amount = days * self.room.price
+			self.amount = amount
+			#binding.pry
+			self.save
+		end
+		
 	end
 	def send_mail_for_host
 		NotificationForBooking.is_confirmed_confirmation(self).deliver_now!

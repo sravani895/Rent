@@ -1,10 +1,14 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user!
+  load_and_authorize_resource
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /bookings
   # GET /bookings.json
   def index
     @bookings = Booking.all
+    @user = current_user
+    @room = Room.all
   end
 
   # GET /bookings/1
@@ -44,13 +48,15 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1.json
   def update
     respond_to do |format|
+      #binding.pry
       if @booking.update(booking_params)
-        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
+        #binding.pry
+        format.html { redirect_to @booking, notice: 'booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
-      else
-        format.html { render :edit }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
-      end
+       else
+         format.html { render :edit }
+         format.json { render json: @booking.errors, status: :unprocessable_entity }
+       end
     end
   end
 
@@ -63,7 +69,10 @@ class BookingsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+def unconfirmed
+  authorize! :unconfirmed ,Booking.new
+  @bookings = Booking.all
+end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_booking

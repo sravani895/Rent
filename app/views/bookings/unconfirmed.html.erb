@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
-<h2><%= link_to 'unconfirmed rooms', bookings_unconfirmed_path %></h2>
-<h1>Listing confirmed rooms</h1>
+
+<h1>Listing not confirmed rooms</h1>
 
 <table>
   <thead>
@@ -16,13 +16,16 @@
 
   <tbody>
     <% @bookings.each do |booking| %>
-    <% if booking.is_confirmed == true %>
+    <% if booking.is_confirmed == false %>
       <tr>
         <td><%= booking.start_date %></td>
         <td><%= booking.end_date %></td>
         <td><%= booking.user.user_name %></td>
         <td><%= booking.room.name %></td>
-        <td><%= booking.is_confirmed %></td>
+        <td><%= form_for(booking) do |f| %>
+          <%= f.check_box :is_confirmed %>
+          <%= f.submit "confirm room" %>
+          <% end %></td>
         <td><%= link_to 'Show', booking %></td>
         <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
         <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -31,7 +34,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%#= link_to 'New Booking', new_booking_path %>

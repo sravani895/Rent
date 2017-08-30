@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'bookings/unconfirmed'
   resources :bookings
   get 'rooms/unauthorized'
   get 'rooms/myrooms'

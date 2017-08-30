@@ -1,8 +1,9 @@
 class Booking < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :room
-	validate :booking_room
+	validate :booking_room, on: :create
 	after_create :send_mail_for_host
+	after_update :send_mail_for_user
 	private
 	def booking_room
 		bookings = Booking.where('room_id=?',self.room_id)

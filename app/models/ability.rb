@@ -17,7 +17,7 @@ class Ability
       can [:read,:update,:destroy], Booking 
     can :unconfirmed, Booking 
         elsif user.role? "guest"
-        can :read, [City, Amenity]
+        can :read, [City, Amenity,Room,Booking]
         can :create, [Room,Booking]
     end
     # Define abilities for the passed in user here. For example:

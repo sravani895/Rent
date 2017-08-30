@@ -21,4 +21,7 @@ class Booking < ActiveRecord::Base
 	def send_mail_for_host
 		NotificationForBooking.is_confirmed_confirmation(self).deliver_now!
 	end
+	def send_mail_for_user
+		NotifcationForUser.is_confirmed(self).deliver_now!
+	end
 	end

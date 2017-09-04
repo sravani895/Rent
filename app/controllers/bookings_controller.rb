@@ -73,6 +73,14 @@ def unconfirmed
   authorize! :unconfirmed ,Booking.new
   @bookings = Booking.all
 end
+def future
+authorize! :future,Booking.new
+@bookings = Booking.all
+  end
+  def past
+    authorize! :past,Booking.new
+    @bookings = Booking.all
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_booking

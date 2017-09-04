@@ -19,6 +19,8 @@ class Ability
         elsif user.role? "guest"
         can :read, [City, Amenity,Room,Booking]
         can :create, [Room,Booking]
+        can :future, Booking
+        can :past, Booking
     end
     # Define abilities for the passed in user here. For example:
     #

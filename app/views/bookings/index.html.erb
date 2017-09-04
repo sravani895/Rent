@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
-<h2><%= link_to 'unconfirmed rooms', bookings_unconfirmed_path %></h2>
-<h1>Listing confirmed rooms</h1>
+<%# if @user.present? %>
+<%# if current_user.id == @booking.room.user.id %>
+<%= link_to 'future bookings', bookings_future_path %> | <%= link_to 'past bookings', bookings_past_path %>
+<h2><%= link_to 'unconfirmed bookings', bookings_unconfirmed_path %></h2>
+<%# end %>
+<%# end %>
+<h1>Listing confirmed bookings</h1>
 
 <table class="table table-striped">
   <thead>

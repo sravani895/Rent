@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'bookings/unconfirmed'
+  get 'bookings/future'
+  get 'bookings/past'
   resources :bookings
   get 'rooms/unauthorized'
   get 'rooms/myrooms'

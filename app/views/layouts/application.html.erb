@@ -16,13 +16,13 @@
 <div class="navbar-inner">
 <div class="container">
 <div id="logo", class="navbar-brand"><%= link_to "Rent a Room", root_path %></div>
-<p class="notice"><%= notice %></p>
+<p class="notice"></p>
  <p class="alert"><%= alert %></p>
 
 <% if user_signed_in? %>
 Welcome <%= current_user.first_name %>
-		<%= link_to "Account Setting",edit_user_registration_path %>
-<%= link_to "sign out", destroy_user_session_path, method: :delete %>
+		<%= link_to "Account Setting",edit_user_registration_path %> |
+<%= link_to "sign out", destroy_user_session_path, method: :delete %> |
 
 <% else %>
 <%= link_to "sign in", new_user_session_path %>   | <%= link_to "sign up", new_user_registration_path %> |

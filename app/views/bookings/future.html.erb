@@ -1,0 +1,31 @@
+<h3>Listing future bookings</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>User</th>
+      <th>Room</th>
+      <th>Amount</th>
+      <th>Is confirmed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+<% @bookings.each do |booking| %>
+<% if booking.start_date > Date.today %>
+<% if booking.user_id == current_user.id %>
+<tr>
+        <td><%= booking.start_date %></td>
+        <td><%= booking.end_date %></td>
+        <td><%= booking.user.user_name %></td>
+        <td><%= booking.room.name %></td>
+        <td><%= booking.amount %></td>
+        <td><%= booking.is_confirmed %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>

@@ -6,6 +6,7 @@ class Room < ActiveRecord::Base
 	belongs_to :city
 	has_many :bookings
 	has_many :images
+	has_many :reviews
 	accepts_nested_attributes_for :images
 validates_presence_of :name, :description, :price, :rules, :minimum_days, :address, :lat, :lng
 after_create :send_an_email

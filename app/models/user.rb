@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
          belongs_to :role
          has_many :rooms
          has_many :bookings
+         has_many :reviews
         
   after_create :default_role
         

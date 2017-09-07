@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
 
   resources :roles
+  resources :reviews
   resources :amenities
   resources :cities
   resources :images

@@ -103,6 +103,70 @@
 <% end %>
 
   <% end %>
+ <h4>Reviews:(<%= @room.reviews.length %>)</h4> 
+ <ol>
+    <% @room.reviews.each do |review| %>
+     <li>  
+           <%= review.user.first_name %> food rating <%= "*" * review.food_rating %> cleanliness rating <%= "*" * review.cleanliness_rating %> safety rating <%= "*" * review.safety_rating %> facility rating <%= "*" * review.facility_rating %> locality rating <%= "*" * review.locality_rating %> <br/>
+           <%= review.review %>  <br/>
+
+            <% if user_signed_in? %>
+                   <% if review.user_id == current_user.id %>
+                           <%= link_to "Destroy", review_path(review.id) %>
+                  <% end %>   
+
+      </li>
+              <% end %>   
+      <% end %>
+  </ol>
+
+  <% if user_signed_in? %>
+<h2> Add Review</h2>
+<%= form_for @review do |f| %>
+    <%= f.label :food_rating %><br/>
+    <%= f.radio_button :food_rating,1 %> 1
+    <%= f.radio_button :food_rating,2 %> 2
+    <%= f.radio_button :food_rating,3 %> 3
+    <%= f.radio_button :food_rating,4 %> 4
+    <%= f.radio_button :food_rating,5 %> 5
+    <br/>
+    <%= f.label :cleanliness_rating %><br/>
+    <%= f.radio_button :cleanliness_rating,1 %> 1
+    <%= f.radio_button :cleanliness_rating,2 %> 2
+    <%= f.radio_button :cleanliness_rating,3 %> 3
+    <%= f.radio_button :cleanliness_rating,4 %> 4
+    <%= f.radio_button :cleanliness_rating,5 %> 5
+    <br/>
+    <%= f.label :safety_rating %><br/>
+    <%= f.radio_button :safety_rating,1 %> 1
+    <%= f.radio_button :safety_rating,2 %> 2
+    <%= f.radio_button :safety_rating,3 %> 3
+    <%= f.radio_button :safety_rating,4 %> 4
+    <%= f.radio_button :safety_rating,5 %> 5
+    <br/>
+    <%= f.label :facility_rating %><br/>
+    <%= f.radio_button :facility_rating,1 %> 1
+    <%= f.radio_button :facility_rating,2 %> 2
+    <%= f.radio_button :facility_rating,3 %> 3
+    <%= f.radio_button :facility_rating,4 %> 4
+    <%= f.radio_button :facility_rating,5 %> 5
+    <br/>
+    <%= f.label :locality_rating %><br/>
+    <%= f.radio_button :locality_rating,1 %> 1
+    <%= f.radio_button :locality_rating,2 %> 2
+    <%= f.radio_button :locality_rating,3 %> 3
+    <%= f.radio_button :locality_rating,4 %> 4
+    <%= f.radio_button :locality_rating,5 %> 5
+    <br/>
+    <%= f.label :review %><br/>
+    <%= f.text_field :review %><br/>
+    <%= f.hidden_field :room_id,value: @room.id %><br/>
+    <%#= f.hidden_field :user_id,value: current_user.id %>
+<%= f.submit %>
+
+<% end %><br/>
+<% end %>
+
 <% if can? :update, @room %>
 <%= link_to 'Edit', edit_room_path(@room) %>
 <% end %> |

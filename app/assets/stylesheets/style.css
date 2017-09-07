@@ -1,0 +1,68 @@
+/* application.html.erb */
+
+.navbar-brand h2 a{
+	    color: #1e5a8e;
+}
+
+.navbar-brand h2 a:hover{
+	color: green;
+	text-decoration: none;
+}
+
+.navbar-brand h2{
+	margin: 0px;
+}
+
+.navbar-links a {
+	color: #1e5a8e;
+}
+.navbar-links a:hover{
+	color: green;
+	text-decoration: none;
+}
+
+
+
+
+
+/* room show */
+
+.rooms-show h2 {
+	color: #1e5a8e;
+    text-transform: uppercase;
+    font-weight: 700;
+
+} 
+.rooms-show h3{
+	color: #1e5a8e;
+}
+.rooms-show h4{
+	color: #1e5a8e;
+}
+
+/* cities-index */
+.cities-index h1 {
+	    color: #1e5a8e;
+}
+
+/* amenities-index */
+.amenities-index h1 {
+	    color: #1e5a8e;
+}
+ /* rooms-index */
+ .rooms-index a{
+ 	color: #1e5a8e;
+ }
+ .rooms-index h2{
+ 	color: #1e5a8e;
+ }
+ .rooms-index a:hover{
+ 	color: green;
+ 	text-decoration: none;
+ }
+ .images-index h1{
+ 	    color: #1e5a8e;
+ }
+ .unauthorized-index h2{
+ 	color: #1e5a8e;
+ }

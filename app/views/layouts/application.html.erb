@@ -15,10 +15,10 @@
 <header class= "navbar navbar-default" role="navigation">
 <div class="navbar-inner">
 <div class="container">
-<div id="logo", class="navbar-brand"><%= link_to "Rent a Room", root_path %></div>
+<div id="logo", class="navbar-brand"><h2><%= link_to "Rent a Room", root_path %></h2></div>
 <p class="notice"></p>
  <p class="alert"><%= alert %></p>
-
+<div class="navbar-links">
 <% if user_signed_in? %>
 Welcome <%= current_user.first_name %>
 		<%= link_to "Account Setting",edit_user_registration_path %> |
@@ -28,6 +28,7 @@ Welcome <%= current_user.first_name %>
 <%= link_to "sign in", new_user_session_path %>   | <%= link_to "sign up", new_user_registration_path %> |
 <% end %>
 <%= link_to "cities", cities_path %> | <%= link_to "amenities", amenities_path %> | <%= link_to "rooms", rooms_path %> | <%= link_to "images", images_path %>
+</div>
 <%= yield %>
 </div>
 </body>

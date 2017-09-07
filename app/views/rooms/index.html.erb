@@ -1,3 +1,4 @@
+<div class="rooms-index">
 <p id="notice"><%= notice %></p>
 <h2><%= link_to "my rooms", rooms_myrooms_path %></h2>
 <% if @user.present? %>
@@ -36,12 +37,12 @@
         <td><%= room.lat %></td>
         <td><%= room.lng %></td>
         <td><%= room.is_authorized %></td>
-        <td><%= link_to 'Show', room %></td>
+        <td><%= link_to 'Show', room, class: "btn btn-success" %></td>
         <% if can? :update, room %>
-        <td><%= link_to 'Edit', edit_room_path(room) %></td>
+        <td><%= link_to 'Edit', edit_room_path(room), class: "btn btn-info" %></td>
         <% end %>
         <% if can? :destroy, room %>
-        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         <% end %>
         <% end %>
       </tr>
@@ -51,5 +52,6 @@
 
 <br>
 <% if can? :create , Room.new %>
-<%= link_to 'New Room', new_room_path %>
+<%= link_to 'New Room', new_room_path, class: "btn btn-primary" %>
 <% end %>
+</div>

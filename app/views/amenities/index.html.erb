@@ -1,3 +1,4 @@
+<div class="amenities-index">
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Amenities</h1>
@@ -16,12 +17,12 @@
       <tr>
         <td><%= amenity.name %></td>
         <td><%= amenity.description %></td>
-        <td><%= link_to 'Show', amenity %></td>
+        <td><%= link_to 'Show', amenity, class: "btn btn-success" %></td>
         <% if can? :update, amenity %>
-        <td><%= link_to 'Edit', edit_amenity_path(amenity) %></td>
+        <td><%= link_to 'Edit', edit_amenity_path(amenity), class: "btn btn-info" %></td>
         <% end %>
         <% if can? :destroy, amenity %>
-        <td><%= link_to 'Destroy', amenity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', amenity, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         <% end %>
       </tr>
     <% end %>
@@ -30,5 +31,6 @@
 
 <br>
 <% if can? :create, Amenity.new %>
-<%= link_to 'New Amenity', new_amenity_path %>
+<%= link_to 'New Amenity', new_amenity_path, class: "btn btn-primary" %>
 <% end %>
+</div>

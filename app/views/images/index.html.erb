@@ -1,3 +1,4 @@
+<div class="images-index">
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Images</h1>
@@ -16,9 +17,9 @@
       <tr>
         <td><%= image_tag(a.image.url, size:"25x25") %></td>
         <td><%= a.room_id %></td>
-        <td><%= link_to 'Show', a %></td>
-        <td><%= link_to 'Edit', edit_image_path(a) %></td>
-        <td><%= link_to 'Destroy', a, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', a, class: "btn btn-success" %></td>
+        <td><%= link_to 'Edit', edit_image_path(a), class: "btn btn-info" %></td>
+        <td><%= link_to 'Destroy', a, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +27,5 @@
 
 <br>
 
-<%= link_to 'New Image', new_image_path %>
+<%= link_to 'New Image', new_image_path, class: "btn btn-primary" %>
+</div>

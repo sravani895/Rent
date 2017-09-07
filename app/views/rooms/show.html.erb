@@ -98,16 +98,16 @@
   </div>
   
   <div class="actions">
-    <%= f.submit %>
-  </div>
+   <%= f.submit "Submit", id: "submit" , data: { disable_with: "Please wait..."} %>
 <% end %>
 
   <% end %>
  <h4>Reviews:(<%= @room.reviews.length %>)</h4> 
+ 
  <ol>
     <% @room.reviews.each do |review| %>
      <li>  
-           <%= review.user.first_name %> food rating <%= "*" * review.food_rating %> cleanliness rating <%= "*" * review.cleanliness_rating %> safety rating <%= "*" * review.safety_rating %> facility rating <%= "*" * review.facility_rating %> locality rating <%= "*" * review.locality_rating %> <br/>
+           <%= review.user.first_name %> given average rating <%= '*' * ((review.food_rating+review.cleanliness_rating+review.safety_rating+review.facility_rating+review.locality_rating)/5) %>  <br/>
            <%= review.review %>  <br/>
 
             <% if user_signed_in? %>
@@ -122,41 +122,13 @@
 
   <% if user_signed_in? %>
 <h2> Add Review</h2>
+
 <%= form_for @review do |f| %>
-    <%= f.label :food_rating %><br/>
-    <%= f.radio_button :food_rating,1 %> 1
-    <%= f.radio_button :food_rating,2 %> 2
-    <%= f.radio_button :food_rating,3 %> 3
-    <%= f.radio_button :food_rating,4 %> 4
-    <%= f.radio_button :food_rating,5 %> 5
-    <br/>
-    <%= f.label :cleanliness_rating %><br/>
-    <%= f.radio_button :cleanliness_rating,1 %> 1
-    <%= f.radio_button :cleanliness_rating,2 %> 2
-    <%= f.radio_button :cleanliness_rating,3 %> 3
-    <%= f.radio_button :cleanliness_rating,4 %> 4
-    <%= f.radio_button :cleanliness_rating,5 %> 5
-    <br/>
-    <%= f.label :safety_rating %><br/>
-    <%= f.radio_button :safety_rating,1 %> 1
-    <%= f.radio_button :safety_rating,2 %> 2
-    <%= f.radio_button :safety_rating,3 %> 3
-    <%= f.radio_button :safety_rating,4 %> 4
-    <%= f.radio_button :safety_rating,5 %> 5
-    <br/>
-    <%= f.label :facility_rating %><br/>
-    <%= f.radio_button :facility_rating,1 %> 1
-    <%= f.radio_button :facility_rating,2 %> 2
-    <%= f.radio_button :facility_rating,3 %> 3
-    <%= f.radio_button :facility_rating,4 %> 4
-    <%= f.radio_button :facility_rating,5 %> 5
-    <br/>
-    <%= f.label :locality_rating %><br/>
-    <%= f.radio_button :locality_rating,1 %> 1
-    <%= f.radio_button :locality_rating,2 %> 2
-    <%= f.radio_button :locality_rating,3 %> 3
-    <%= f.radio_button :locality_rating,4 %> 4
-    <%= f.radio_button :locality_rating,5 %> 5
+    food rating  : <%= rating_for @review, 'food_rating',enable_half: true %>
+cleanliness rating  : <%= rating_for @review, 'cleanliness_rating', enable_half: true %>
+safety rating  : <%= rating_for @review, 'safety_rating', enable_half: true %>
+facility rating  : <%= rating_for @review, 'facility_rating', enable_half: true %>
+locality rating  : <%= rating_for @review, 'locality_rating', enable_half: true %>
     <br/>
     <%= f.label :review %><br/>
     <%= f.text_field :review %><br/>
@@ -182,5 +154,47 @@
       // minDate: 0
     });
   } );
+
+
+    var flag = {
+      startdate: false, 
+      enddate: false
+    } 
+      var startDateHandle = document.getElementById('booking_start_date');
+      var endDateHandle = document.getElementById('booking_end_date')
+      var submitHandle = document.getElementById('submit');
+      submitHandle.disabled = true;
+
+      startDateHandle.onchange = function(){
+        if(startDateHandle.value != ""){
+          flag.startdate = true;
+          showSubmitBtn(flag);
+        }
+      }
+
+      endDateHandle.onchange = function(){
+        if(endDateHandle.value != ""){
+          flag.enddate = true;
+          showSubmitBtn(flag);
+        }
+      }
+
+      function showSubmitBtn(flag){
+        var innerFlag = 0;
+        for(var key in flag){
+          if(flag[key] == false){
+            innerFlag = false;
+          } else {
+           innerFlag += 1;
+          }
+        }
+        if(innerFlag === 2){
+          submitHandle.disabled = false;
+        }else {
+          submitHandle.disabled = true;
+        }
+      }
+
+
   </script>
 

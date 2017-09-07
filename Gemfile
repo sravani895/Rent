@@ -7,6 +7,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'ratyrate'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

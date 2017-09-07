@@ -8,6 +8,7 @@ class Booking < ActiveRecord::Base
 	private
 	def booking_room
 		bookings = Booking.where('room_id=?',self.room_id)
+		binding.pry
 		new_dates = (self.start_date.to_datetime..self.end_date.to_datetime).to_a
 		bookings.each do |book|
 			#binding.pry

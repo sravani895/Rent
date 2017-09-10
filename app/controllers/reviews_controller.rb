@@ -3,9 +3,9 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     @room = Room.all
-    binding.pry
+    #binding.pry
     if @review.save
-    	binding.pry
+    	#binding.pry
       redirect_to :back, notice: "Thank you for the Review"
   else 
   	redirect_to room_path(@room.ids)
@@ -17,10 +17,9 @@ class ReviewsController < ApplicationController
 
   def destroy
       @review = Review.find(params[:id])
-      binding.pry
+      #binding.pry
       if @review.destroy
-        binding.pry
-        redirect_to articles_path, notice: "successfully deleted"
+        redirect_to :back, notice: "successfully deleted"
       else
         render action: back
       end

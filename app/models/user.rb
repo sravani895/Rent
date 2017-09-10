@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
          has_many :rooms
          has_many :bookings
          has_many :reviews
-         ratyrate_rater
+         
         
   after_create :default_role
         

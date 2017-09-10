@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <h2>my rooms</h2>
 
 <table class="table table-striped">
@@ -29,12 +30,12 @@
         <td><%= room.lat %></td>
         <td><%= room.lng %></td>
         <td><%= room.is_authorized %></td>
-        <td><%= link_to 'Show', room %></td>
+        <td><%= link_to 'Show', room, class: "btn btn-success" %></td>
         <% if can? :update, room %>
-        <td><%= link_to 'Edit', edit_room_path(room) %></td> 
+        <td><%= link_to 'Edit', edit_room_path(room), class: "btn btn-info" %></td> 
         <% end %>
         <% if can? :destroy, room %>
-        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         <% end %>
         <% end %>
       </tr>
@@ -42,4 +43,5 @@
   </tbody>
 </table><br/>
 
-<%= link_to 'bookings', bookings_path %>
+<%= link_to 'bookings', bookings_path, class: "btn btn-primary" %>
+</div>

@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <div class="cities-index">
 <p id="notice"><%= notice %></p>
 
@@ -31,4 +32,5 @@
 <% if can? :create, City.new %>
 <%= link_to 'New City', new_city_path, class: "btn btn-primary" %>
 <% end %>
+</div>
 </div>

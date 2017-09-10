@@ -21,7 +21,11 @@
 	text-decoration: none;
 }
 
-
+a.navbar-brand {
+	font-size: 30px;
+    font-weight: bold;
+    color: lightseagreen !important;
+}
 
 
 
@@ -39,6 +43,10 @@
 .rooms-show h4{
 	color: #1e5a8e;
 }
+.rooms-show .table-bordered{
+    background: #fcf8e3;
+}
+
 
 /* cities-index */
 .cities-index h1 {

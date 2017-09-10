@@ -9,26 +9,42 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
 
-<header class= "navbar navbar-default" role="navigation">
-<div class="navbar-inner">
-<div class="container">
-<div id="logo", class="navbar-brand"><h2><%= link_to "Rent a Room", root_path %></h2></div>
-<p class="notice"></p>
- <p class="alert"><%= alert %></p>
-<div class="navbar-links">
-<% if user_signed_in? %>
-Welcome <%= current_user.first_name %>
-		<%= link_to "Account Setting",edit_user_registration_path %> |
-<%= link_to "sign out", destroy_user_session_path, method: :delete %> |
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Rent a Room</a>
+    </div>
 
-<% else %>
-<%= link_to "sign in", new_user_session_path %>   | <%= link_to "sign up", new_user_registration_path %> |
-<% end %>
-<%= link_to "cities", cities_path %> | <%= link_to "amenities", amenities_path %> | <%= link_to "rooms", rooms_path %> | <%= link_to "images", images_path %>
-</div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  
+    
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+	      <li><%= link_to "Cities", cities_path %> </li>
+	      <li><%= link_to "Amenities", amenities_path %> </li>
+	      <li><%= link_to "Rooms", rooms_path %> </li>    
+	      <li><%= link_to "Account Settings",edit_user_registration_path %> </li>
+	      <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %> </li>
+	      <% else %>
+	      <li><%= link_to"Sign in", new_user_session_path %> </li>
+	      <li><%= link_to "Sign up", new_user_registration_path %> </li>
+       <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <%= yield %>
 </div>
 </body>

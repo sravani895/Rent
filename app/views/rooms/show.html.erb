@@ -1,69 +1,60 @@
+<div class="container-fluid">
 <div class="rooms-show">
 
 <p id="notice"><%= notice %></p>
+<div class="row">
+<div class="col-md-6">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th><%= @room.name %></th>
+    </tr>
+      <tr>
+      <th>Description</th>
+      <th><%= @room.description %></th>
+    </tr>
+      <tr>
+      <th>Price</th>
+      <th><%= @room.price %></th>
+    </tr>
+      <tr>
+      <th>Rules</th>
+      <th><%= @room.rules %></th>
+    </tr>
+      <tr>
+      <th>Minimum Days</th>
+      <th><%= @room.minimum_days %></th>
+    </tr>
+      <tr>
+      <th>Address</th>
+      <th><%= @room.address %></th>
+    </tr>
+      <tr>
+      <th>Lat</th>
+      <th><%= @room.lat %></th>
+    </tr>
+      <tr>
+      <th>Lng</th>
+      <th><%= @room.lng %></th>
+    </tr>
+      <tr>
+      <th>User</th>
+      <th><%= @room.user.user_name %></th>
+    </tr>
+  </thead>
+</table>
 
-<p>
-  <strong>Name:</strong>
-  <%= @room.name %>
-</p>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @room.description %>
-</p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @room.price %>
-</p>
-
-<p>
-  <strong>Rules:</strong>
-  <%= @room.rules %>
-</p>
-
-<p>
-  <strong>Minimum days:</strong>
-  <%= @room.minimum_days %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @room.address %>
-</p>
-
-<p>
-  <strong>Lat:</strong>
-  <%= @room.lat %>
-</p>
-
-<p>
-  <strong>Lng:</strong>
-  <%= @room.lng %>
-</p>
-<p>
-  <strong>User:</strong>
-  <%= @room.user.user_name %>
-</p>
-
+<div class="col-md-6">
 <h2>Selected amenities</h2>
 <ol>
 <% @room.amenities.each do |amenity| %>
   <li><%=  amenity.name %> </li>
 <% end %>
 </ol>
-<P>
-<strong>image:</strong>
-<% @room.images.each do |img| %>
-    <%=image_tag img.image %>
-  <% end %>
-</P>
-<p>
-  <strong>Is authorized:</strong>
-  <%= @room.is_authorized %>
-</p>
-
-
 <iframe
   width="400"
   height="250"
@@ -71,6 +62,15 @@
   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAQ6hKKYYyVNOh4RVkhoVmlc6WKnVtPH0M
     &q=<%= @room.address %>, <%= @room.lat %>, <%= @room.lng %>" allowfullscreen>
 </iframe><br>
+
+</div>
+</div>
+<P>
+<strong>image:</strong>
+<% @room.images.each do |img| %>
+    <%=image_tag img.image %>
+  <% end %>
+</P>
 
 
 <% if user_signed_in? %>
@@ -110,18 +110,17 @@
   <% end %>
 
 
-
  <h4>Reviews:(<%= @room.reviews.length %>)</h4> 
  
  <ol>
     <% @room.reviews.each do |review| %>
      <li>  
-           <%= review.user.first_name %> given average rating <%#= '*' * ((review.food_rating+review.cleanliness_rating+review.safety_rating+review.facility_rating+review.locality_rating)/5) %>  <br/>
+           <%= review.user.first_name %> given average rating <%= '*' * ((review.food_rating+review.cleanliness_rating+review.safety_rating+review.facility_rating+review.locality_rating)/5) %>  <br/>
            <%= review.review %>  <br/>
 
             <% if user_signed_in? %>
                    <% if review.user_id == current_user.id %>
-                           <%= link_to "Destroy", review_path(review.id) %>
+                           <%= link_to "Destroy", review, method: :delete, data: { confirm: 'Are you sure?' } %>
                   <% end %>   
 
       </li>
@@ -133,7 +132,17 @@
 <h2> Add Review</h2>
 
 <%= form_for @review do |f| %>
-    <%= f.label :food_rating %><br/>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <ul>
+      <% review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.label :food_rating %><br/>
     <%= f.radio_button :food_rating,1 %> 1
     <%= f.radio_button :food_rating,2 %> 2
     <%= f.radio_button :food_rating,3 %> 3
@@ -166,8 +175,7 @@
     <%= f.radio_button :locality_rating,2 %> 2
     <%= f.radio_button :locality_rating,3 %> 3
     <%= f.radio_button :locality_rating,4 %> 4
-    <%= f.radio_button :locality_rating,5 %> 5
-    <br/>
+    <%= f.radio_button :locality_rating,5 %> 5 <br/>
     <%= f.label :review %><br/>
     <%= f.text_field :review %><br/>
     <%= f.hidden_field :room_id,value: @room.id %><br/>
@@ -176,24 +184,52 @@
 
 <% end %><br/>
 <% end %>
-
+</div>
 <% if can? :update, @room %>
 <%= link_to 'Edit', edit_room_path(@room) %>
 <% end %> |
 <%= link_to 'Back', rooms_path %>
-
 </div>
 <script>
+  var date_end;
   $( function() {
-    $( "#booking_start_date" ).datepicker({
-      dateFormat: 'yy-mm-dd',
+
+    var today = new Date();
+    var dd = today.getDate();
+
+    $( "#booking_start_date" ).datepicker({minDate: 3,
+      dateFormat: 'yy-mm-dd'
       // minDate: 0
+
     });
-    $( "#booking_end_date" ).datepicker({
-      dateFormat: 'yy-mm-dd',
-      // minDate: 0
+
+    // $('#booking_start_date').datepicker()
+    //     .on("input change", function (e) {
+    //     var datex = $("booking_start_date").datepicker("getDate");
+    //     console.log(datex);
+    // });
+
+
+
+    $('#booking_start_date').change(function () {
+        date = $('#booking_start_date').val();
+        console.log(date);
+        date2 = new Date(date);
+        console.log(date2.getDate());
+        date_end = date2.getDate() - 8;
+        console.log(date_end);
     });
-  } );
+
+    // console.log(date_end);
+
+    $('#booking_start_date').change(function () {
+      $( "#booking_end_date" ).datepicker({minDate: date_end,
+        dateFormat: 'yy-mm-dd'
+
+        // minDate: 0
+      });
+    });
+  });
 
 
     var flag = {
@@ -234,7 +270,6 @@
           submitHandle.disabled = true;
         }
       }
-
 
   </script>
 

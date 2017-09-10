@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <div class="amenities-index">
 <p id="notice"><%= notice %></p>
 
@@ -33,4 +34,5 @@
 <% if can? :create, Amenity.new %>
 <%= link_to 'New Amenity', new_amenity_path, class: "btn btn-primary" %>
 <% end %>
+</div>
 </div>

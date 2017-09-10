@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  post '/rate' => 'rater#create', :as => 'rate'
   get 'bookings/unconfirmed'
   get 'bookings/future'
   get 'bookings/past'

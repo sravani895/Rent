@@ -1,10 +1,12 @@
 <p id="notice"><%= notice %></p>
-<%# if @user.present? %>
+<%# if user_signed_in? %>
 <%# if current_user.id == @booking.room.user.id %>
+<% if can? :read, Booking %>
 <%= link_to 'future bookings', bookings_future_path %> | <%= link_to 'past bookings', bookings_past_path %>
+<%# end %>
+<% end %>
 <h2><%= link_to 'unconfirmed bookings', bookings_unconfirmed_path %></h2>
-<%# end %>
-<%# end %>
+
 <h1>Listing confirmed bookings</h1>
 
 <table class="table table-striped">

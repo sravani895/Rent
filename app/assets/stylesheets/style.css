@@ -1,5 +1,10 @@
 /* application.html.erb */
 
+.navbar-brand>img{
+	width: 82px;
+    height: 30px;
+}
+
 .navbar-brand h2 a{
 	    color: #1e5a8e;
 }
@@ -29,22 +34,38 @@ a.navbar-brand {
 
 
 
+
 /* room show */
 
 .rooms-show h2 {
 	color: #1e5a8e;
     text-transform: uppercase;
     font-weight: 700;
+    margin-top: 0px;
 
 } 
 .rooms-show h3{
 	color: #1e5a8e;
+  margin: 0px;
+    padding-bottom: 10px;
 }
 .rooms-show h4{
 	color: #1e5a8e;
 }
 .rooms-show .table-bordered{
     background: #fcf8e3;
+}
+
+.rooms-show .my-booking input {
+    width: 100%;
+}
+
+.rooms-show .my-booking input#submit{
+  border-radius: 0px;
+}
+
+.rooms-show .my-booking{
+  margin-bottom: 10px;
 }
 
 
@@ -74,3 +95,369 @@ a.navbar-brand {
  .unauthorized-index h2{
  	color: #1e5a8e;
  }
+
+
+ /* devise-sessions-new */
+ 
+ 
+
+
+ /* signin page */
+.sign-in-box{
+  width: 650px;
+  margin: 0 auto;
+}
+
+ .signin * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+.signin h2{
+  text-align: center;
+    color: #053525;
+    padding-bottom: 10px;
+}
+.signin  {
+  font-family: "Roboto";
+  font-size: 14px;
+  background-size: 200% 100% !important;
+  -webkit-animation: move 10s ease infinite;
+          animation: move 10s ease infinite;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  background: -webkit-linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
+  background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
+  height: 50vh;
+}
+
+.signin .user {
+  width: 90%;
+  max-width: 340px;
+  margin: 10vh auto;
+  padding: 50px 0px;
+}
+
+.signin .user__header {
+  text-align: center;
+  opacity: 0;
+  -webkit-transform: translate3d(0, 500px, 0);
+          transform: translate3d(0, 500px, 0);
+  -webkit-animation: arrive 0.3s ease-in-out 0.7s forwards;
+          animation: arrive 0.3s ease-in-out 0.7s forwards;
+}
+
+.signin .user__title {
+  font-size: 14px;
+  margin-bottom: -10px;
+  font-weight: 500;
+  color: white;
+}
+
+.signin .form {
+  margin-top: 40px;
+  border-radius: 6px;
+  overflow: hidden;
+  opacity: 0;
+  -webkit-transform: translate3d(0, 500px, 0);
+          transform: translate3d(0, 500px, 0);
+  -webkit-animation: arrive 0.3s ease-in-out 0.9s forwards;
+          animation: arrive 0.3s ease-in-out 0.9s forwards;
+}
+
+.signin .form--no {
+  -webkit-animation: NO 1s ease-in-out;
+          animation: NO 1s ease-in-out;
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.signin .form__input {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  font-family: "Roboto";
+  -webkit-appearance: none;
+  border: 0;
+  outline: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  margin-bottom: 10px;
+}
+.signin .form__input:focus {
+  background: #f7f7f7;
+}
+
+.signin .btn {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  font-family: "Roboto";
+  -webkit-appearance: none;
+  outline: 0;
+  border: 0;
+  color: white;
+  background: #ABA194;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.signin .btn:hover {
+  background: #a09486;
+}
+
+@-webkit-keyframes NO {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+@keyframes NO {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+@-webkit-keyframes arrive {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 500px, 0);
+            transform: translate3d(0, 500px, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes arrive {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 500px, 0);
+            transform: translate3d(0, 500px, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+@-webkit-keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+/* signup page */
+.sign-up-box{
+  width: 650px;
+  margin: 0 auto;
+}
+.signup * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.signup h2{
+   text-align: center;
+    color: #053525;
+    padding-bottom: 10px;
+}
+
+.signup  {
+  font-family: "Roboto";
+  font-size: 14px;
+  background-size: 200% 100% !important;
+  -webkit-animation: move 10s ease infinite;
+          animation: move 10s ease infinite;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  background: -webkit-linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
+  background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
+  height: 85vh;
+}
+
+.signup .user {
+  width: 90%;
+  max-width: 340px;
+  margin: 10vh auto;
+  padding: 50px 0px;
+}
+
+.signup .user__header {
+  text-align: center;
+  opacity: 0;
+  -webkit-transform: translate3d(0, 500px, 0);
+          transform: translate3d(0, 500px, 0);
+  -webkit-animation: arrive 0.3s ease-in-out 0.7s forwards;
+          animation: arrive 0.3s ease-in-out 0.7s forwards;
+}
+
+.signup .user__title {
+  font-size: 14px;
+  margin-bottom: -10px;
+  font-weight: 500;
+  color: white;
+}
+
+.signup .form {
+  margin-top: 40px;
+  border-radius: 6px;
+  overflow: hidden;
+  opacity: 0;
+  -webkit-transform: translate3d(0, 500px, 0);
+          transform: translate3d(0, 500px, 0);
+  -webkit-animation: arrive 0.3s ease-in-out 0.9s forwards;
+          animation: arrive 0.3s ease-in-out 0.9s forwards;
+}
+
+.signup .form--no {
+  -webkit-animation: NO 1s ease-in-out;
+          animation: NO 1s ease-in-out;
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.signup .form__input {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  font-family: "Roboto";
+  -webkit-appearance: none;
+  border: 0;
+  outline: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  margin-bottom: 10px;
+}
+.signup .form__input:focus {
+  background: #f7f7f7;
+}
+
+.signup .btn {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  font-family: "Roboto";
+  -webkit-appearance: none;
+  outline: 0;
+  border: 0;
+  color: white;
+  background: #ABA194;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.signup .btn:hover {
+  background: #a09486;
+}
+
+@-webkit-keyframes NO {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+@keyframes NO {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+@-webkit-keyframes arrive {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 500px, 0);
+            transform: translate3d(0, 500px, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes arrive {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 500px, 0);
+            transform: translate3d(0, 500px, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+@-webkit-keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}

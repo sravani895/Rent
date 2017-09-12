@@ -1,6 +1,5 @@
 <div class="container-fluid">
 <div class="rooms-show">
-
 <p id="notice"><%= notice %></p>
 <div class="row">
 <div class="col-md-6">
@@ -42,75 +41,97 @@
       <th>User</th>
       <th><%= @room.user.user_name %></th>
     </tr>
+    <tr>
+    <th>Image</th>
+    <th><P>
+<% @room.images.each do |img| %>
+    <%=image_tag img.image %>
+  <% end %>
+</P></th>
+    </tr>
   </thead>
 </table>
-
-</div>
-
+ </div>
 
 <div class="col-md-6">
-<h2>Selected amenities</h2>
-<ol>
-<% @room.amenities.each do |amenity| %>
-  <li><%=  amenity.name %> </li>
-<% end %>
-</ol>
 <iframe
   width="400"
   height="250"
   frameborder="0" style="border:0"
   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAQ6hKKYYyVNOh4RVkhoVmlc6WKnVtPH0M
     &q=<%= @room.address %>, <%= @room.lat %>, <%= @room.lng %>" allowfullscreen>
-</iframe><br>
-
-</div>
-</div>
-<P>
-<strong>image:</strong>
-<% @room.images.each do |img| %>
-    <%=image_tag img.image %>
-  <% end %>
-</P>
-
-
-<% if user_signed_in? %>
-<h3> Booking </h3>
-  <%= form_for(@booking) do |f| %>
-  <% if @booking.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
-
-      <ul>
-      <% @booking.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+</iframe>
+ <h2>Selected amenities</h2>
+      <ol>
+      <% @room.amenities.each do |amenity| %>
+        <li><%=  amenity.name %> </li>
       <% end %>
-      </ul>
+      </ol>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+
+    <% if user_signed_in? %>
+      <h3> Booking </h3>
+        <%= form_for(@booking) do |f| %>
+          <% if @booking.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+                <ul>
+                <% @booking.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+     
+          <% end %>
+
+          <div class="row my-booking">
+            <div class="col-md-3">
+              <%= f.label :start_date %>
+            </div>
+            <div class="col-md-4">
+              <%= f.text_field :start_date %>
+            </div>
+          </div>
+
+          <div class="row my-booking">
+            <div class="col-md-3">
+              <%= f.label :end_date %>
+            </div>
+            <div class="col-md-4">
+              <%= f.text_field :end_date %>
+            </div>
+          </div>
+
+          <%= f.hidden_field :user_id %>
+          <%= f.hidden_field :room_id, value: @room.id %>
+        
+        <div class="row my-booking">
+          <div class="col-md-4 col-md-offset-3 ">
+          <div class="actions">
+         <%= f.submit "Submit", id: "submit" , :class => 'btn btn-success', data: { disable_with: "Please wait..."} %>
+         <% end %>
+
+          </div>
+        </div>
+        
+
+        <% end %>
+   
+      
+     
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :start_date %><br>
-    <%= f.text_field :start_date %>
-  </div>
-  <div class="field">
-    <%= f.label :end_date %><br>
-    <%= f.text_field :end_date %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :room_id, value: @room.id %>
-  </div>
-  
-  <div class="actions">
-   <%= f.submit "Submit", id: "submit" , data: { disable_with: "Please wait..."} %>
-<% end %>
-
-  <% end %>
 
 
- <h4>Reviews:(<%= @room.reviews.length %>)</h4> 
+
+
+  </div>
+
+  <div class="col-md-6">
+   <h4>Reviews:(<%= @room.reviews.length %>)</h4> 
  
  <ol>
     <% @room.reviews.each do |review| %>
@@ -127,6 +148,9 @@
               <% end %>   
       <% end %>
   </ol>
+  </div>
+</div>
+
 
   <% if user_signed_in? %>
 <h2> Add Review</h2>
@@ -177,7 +201,8 @@
     <%= f.radio_button :locality_rating,4 %> 4
     <%= f.radio_button :locality_rating,5 %> 5 <br/>
     <%= f.label :review %><br/>
-    <%= f.text_field :review %><br/>
+    <%= f.text_field :review, id: "my-review" %>
+    <span id="reviewHere"></span><br/> 
     <%= f.hidden_field :room_id,value: @room.id %><br/>
     <%#= f.hidden_field :user_id,value: current_user.id %>
 <%= f.submit %>
@@ -185,17 +210,21 @@
 <% end %><br/>
 <% end %>
 </div>
-<% if can? :update, @room %>
-<%= link_to 'Edit', edit_room_path(@room) %>
-<% end %> |
-<%= link_to 'Back', rooms_path %>
-</div>
+
+ <% if can? :update, @room %>
+      <%= link_to 'Edit', edit_room_path(@room), class: "btn btn-info" %>
+      <% end %> |
+      <%= link_to 'Back', rooms_path, class: "btn btn-info" %>
+
+
+
 <script>
   var date_end;
   $( function() {
 
     var today = new Date();
     var dd = today.getDate();
+  
 
     $( "#booking_start_date" ).datepicker({minDate: 3,
       dateFormat: 'yy-mm-dd'
@@ -230,6 +259,7 @@
       });
     });
   });
+
 
 
     var flag = {
@@ -270,6 +300,18 @@
           submitHandle.disabled = true;
         }
       }
+
+
+        var reviewHandle = document.getElementById('my-review');
+
+        var reviewDisplayHandle = document.getElementById('reviewHere')
+
+
+    reviewHandle.onkeydown = function(){
+      if(reviewHandle.value.length > 0){
+        reviewDisplayHandle.innerHTML = reviewHandle.value.length + 1 + "/150 characters left "
+      }
+    }
 
   </script>
 

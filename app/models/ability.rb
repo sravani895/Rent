@@ -18,6 +18,9 @@ class Ability
     can :unconfirmed, Booking 
         elsif user.role? "guest"
         can :read, [City, Amenity,Room,Booking]
+        can :read, Booking do |book|
+            book.user == user
+        end
         can :create, [Room,Booking]
         can :future, Booking
         can :past, Booking

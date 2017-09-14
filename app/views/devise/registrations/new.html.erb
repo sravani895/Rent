@@ -10,6 +10,7 @@
         <div class="form__group">
            <!--  <input type="text" placeholder="Username" class="form__input form-control" /> -->
             <%= f.text_field :email, placeholder: "email" ,class: "form__input form-control", autofocus: true %>
+            <p id="emailError"></p>
         </div>
         
         <div class="form__group">
@@ -96,3 +97,14 @@
 <%# end %>
 
 <%#= render "devise/shared/links" %> -->
+<script>
+var emailHandle = document.getElementById('user_email');
+var emailErrorHandle = document.getElementById('emailError');
+emailHandle.onblur = function(){
+  if(emailHandle.value == ""){
+    emailErrorHandle.innerHTML = "can't be blank";
+  } else {
+    emailErrorHandle.innerHTML = "";
+  }
+};
+</script>

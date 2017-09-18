@@ -1,7 +1,6 @@
-class CreateSpecialPrices < ActiveRecord::Migration
+class CreateSpecials < ActiveRecord::Migration
   def change
-    create_table :special_prices do |t|
-      t.integer :price
+    create_table :specials do |t|
       t.datetime :start_date
       t.datetime :end_date
       t.integer :room_id

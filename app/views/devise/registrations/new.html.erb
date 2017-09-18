@@ -16,18 +16,22 @@
         <div class="form__group">
            <!--  <input type="text" placeholder="Username" class="form__input form-control" /> -->
             <%= f.text_field :first_name, placeholder: "firstname" ,class: "form__input form-control" %>
+            <p id="firstNameError"></p>
         </div>
         <div class="form__group">
            <!--  <input type="text" placeholder="Username" class="form__input form-control" /> -->
             <%= f.text_field :last_name, placeholder: "lastname" ,class: "form__input form-control" %>
+            <p id="lastNameError"></p>
         </div>
         <div class="form__group">
            <!--  <input type="text" placeholder="Username" class="form__input form-control" /> -->
             <%= f.text_field :user_name, placeholder: "username" ,class: "form__input form-control" %>
+            <p id="userNameError"></p>
         </div>
         <div class="form__group">
            <!--  <input type="text" placeholder="Username" class="form__input form-control" /> -->
             <%= f.text_field :mobile_number, placeholder: "mobile number" ,class: "form__input form-control" %>
+            <p id="mobileNumberError"></p>
         </div>  
     <div class="form__group">
     <% if @minimum_password_length %>
@@ -97,14 +101,70 @@
 <%# end %>
 
 <%#= render "devise/shared/links" %> -->
-<script>
+<!-- <script>
 var emailHandle = document.getElementById('user_email');
 var emailErrorHandle = document.getElementById('emailError');
+var firstNameHandle = document.getElementById('user_first_name');
+var firstNameErrorHandle = document.getElementById('firstNameError');
+var lastNameHandle = document.getElementById('user_last_name');
+var lastNameErrorHandle = document.getElementById('lastNameError');
+var userNameHandle = document.getElementById('user_user_name');
+var userNameErrorHandle = document.getElementById('userNameError');
+var mobileNumberHandle = document.getElementById('user_mobile_number');
+var mobileNumberErrorHandle = document.getElementById('mobileNumberError')
+function validateEmail(email){
+     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
+    function validateUsername(username){
+      var alphaOnly = /^[a-zA-Z]*$/;
+      return alphaOnly.test(username);
+    }
+    function validateMobile(mobile){
+      var numberOnly = /^\d+$/;
+      return numberOnly.test(mobile);
+      }
+
+
 emailHandle.onblur = function(){
   if(emailHandle.value == ""){
     emailErrorHandle.innerHTML = "can't be blank";
   } else {
+   if(validateEmail(emailHandle.value)){
     emailErrorHandle.innerHTML = "";
+   }else{
+    emailErrorHandle.innerHTML = "invalid email id";
+   }
   }
 };
-</script>
+firstNameHandle.onblur = function(){
+  if(firstNameHandle.value == ""){
+    firstNameErrorHandle.innerHTML = "can't be blank";
+  }else {
+    firstNameErrorHandle.innerHTML = "";
+  }
+};
+lastNameHandle.onblur = function(){
+  if(lastNameHandle.value == ""){
+    lastNameErrorHandle.innerHTML = "can't be blank";
+  }else{
+    lastNameErrorHandle.innerHTML = "";
+  }
+};
+userNameHandle.onblur = function(){
+  if(userNameHandle.value == ""){
+    userNameErrorHandle.innerHTML = "can't be blank";
+  }else{
+    userNameErrorHandle.innerHTML = "";
+  }  
+};
+mobileNumberHandle.onblur = function(){
+if(mobileNumberHandle.value == ""){
+  mobileNumberErrorHandle.innerHTML = "can't be blank";
+}else{
+ if(validateMobile(mobileHandle.value)){
+  mobileNumberErrorHandle.innerHTML = "can contain only numbers";
+ }
+}
+};
+</script> -->

@@ -1,0 +1,23 @@
+<h2>special prices</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @specials.each do |special| %>
+      <tr>
+        <td><%= special.start_date %></td>
+        <td><%= special.end_date %></td>
+        <td><%= special.price %></td>
+        <td><%= link_to "show", room_special_path(special.room, special), class: "btn btn-success"%></td>
+        <td><%= link_to "edit", edit_room_special_path(special.room, special), class: "btn btn-info"%></td>
+        <td><%= link_to "delete", [special.room, special] ,method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger"%></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

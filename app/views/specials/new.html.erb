@@ -1,0 +1,20 @@
+<div class="specialnew">
+<h2>Add SpecialPrice</h2>
+<%=form_for [@room,@special] do |f| %>
+<% if @special.errors.any? %>
+<h3>Errors : </h3>
+<ul>
+<% @special.errors.full_messages.each do |msg| %>
+<li><%= msg %></li>
+<% end %>
+</ul>
+<% end %>
+
+<%= f.label :start_date %><br/>
+<%= f.date_select :start_date %><br/>
+<%= f.label :end_date %><br/>
+<%= f.date_select :end_date %><br/>
+<%= f.hidden_field :room_id, value: @room.id %>
+<%= f.submit  %>
+<% end %>
+</div>

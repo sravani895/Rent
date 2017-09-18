@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   resources :bookings
   get 'rooms/unauthorized'
   get 'rooms/myrooms'
-  resources :rooms 
+  
+resources :rooms do
+  resources :specials 
+  end
   devise_for :users
     scope "/admin" do
      resources :users
